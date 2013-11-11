@@ -5,7 +5,7 @@ namespace StrategyConsoleApplication.Strategies
 {
     public class GenderProductRecommender : IProductRecommender
     {
-        public Product Recommend()
+        public Product Recommend(Customer customer)
         {
             throw new NotImplementedException(); // TODO: 
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using StrategyConsoleApplication.Interfaces;
 
 namespace StrategyConsoleApplication
 {
@@ -7,36 +8,40 @@ namespace StrategyConsoleApplication
         static void Main(string[] args)
         {
             var salesMode = SalesMode.Gender;
+            var customer = new Customer()
+                               {
+                                   Gender = Gender.Male,
+                                   Name = "Pål Gordon Nilsen"
+                               };
+
             Product recommendedProduct = null;
 
             if (salesMode == SalesMode.Gender)
             {
-                if (salesMode == SalesMode.LowPrice)
+                if (customer.Gender == Gender.Female)
                 {
-                    if (salesMode == SalesMode.Seasonal)
-                        recommendedProduct = new Product("SomeProduct", "For males and with low-cost and with seasonal focus");
+                    recommendedProduct = new Product("SomeProduct", "For females");
                 }
                 else
-                    recommendedProduct = new Product("SomeProduct", "For males in general not interested in low-cost");
+                    recommendedProduct = new Product("SomeProduct", "For males");
             }
             else if (salesMode == SalesMode.LowPrice)
             {
-                if (salesMode == SalesMode.Seasonal)
+                if (customer.Gender == Gender.Female)
                 {
-                    recommendedProduct = new Product("SomeProduct", "Low-cost and with seasonal focus");
+                    recommendedProduct = new Product("SomeProduct", "For females  and low-cost");
                 }
                 else
-                    recommendedProduct = new Product("SomeProduct", "Low-cost in general");
+                    recommendedProduct = new Product("SomeProduct", "For males and low-cost");
             }
             else if (salesMode == SalesMode.Seasonal)
             {
-                if (salesMode == SalesMode.LowPrice)
+                if (customer.Gender == Gender.Female)
                 {
-                    if (salesMode == SalesMode.Gender)
-                        recommendedProduct = new Product("SomeProduct", "For women and with low-cost and with seasonal focus");
+                    recommendedProduct = new Product("SomeProduct", "For females and seasonal");
                 }
                 else
-                    recommendedProduct = new Product("SomeProduct", "Seasonal focus in general");
+                    recommendedProduct = new Product("SomeProduct", "For males and seasonal");
             }
             else
             {
