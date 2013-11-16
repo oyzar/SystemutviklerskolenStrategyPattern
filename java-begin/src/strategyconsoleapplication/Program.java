@@ -1,8 +1,5 @@
 package strategyconsoleapplication;
 
-import strategyconsoleapplication.interfaces.Customer;
-import strategyconsoleapplication.interfaces.Gender;
-
 public class Program {
 
     public static void main(String [] args) {

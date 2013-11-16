@@ -1,4 +1,4 @@
-package strategyconsoleapplication.interfaces;
+package strategyconsoleapplication;
 
 public class Customer {
     private String name;
