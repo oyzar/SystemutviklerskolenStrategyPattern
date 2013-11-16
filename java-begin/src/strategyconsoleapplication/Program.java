@@ -16,29 +16,27 @@ public class Program {
         Customer customer = new Customer("Customer", gender);
 
         Product recommendedProduct;
-
         if (salesMode == SalesMode.GENDER) {
             if (customer.getGender() == Gender.FEMALE) {
-                recommendedProduct = new Product("SomeProduct", "For females");
+                recommendedProduct = new Product("Prada purse", "Dream handbag for girls of all ages");
             } else {
-                recommendedProduct = new Product("SomeProduct", "For males");
+                recommendedProduct = new Product("Rollex Sea-Dweller", "Real man's watch");
             }
         } else if (salesMode == SalesMode.LOW_PRICE) {
             if (customer.getGender() == Gender.FEMALE) {
-                recommendedProduct = new Product("SomeProduct", "For females  and low-cost");
+                recommendedProduct = new Product("Økonomi sko", "Stylish shoes for stylish girls with a budget");
             } else {
-                recommendedProduct = new Product("SomeProduct", "For males and low-cost");
+                recommendedProduct = new Product("Pokal øl", "More beer for men");
             }
         } else if (salesMode == SalesMode.SEASONAL) {
             if (customer.getGender() == Gender.FEMALE) {
-                recommendedProduct = new Product("SomeProduct", "For females and seasonal");
+                recommendedProduct = new Product("Vinterkjole", "Dream winter dress for girls of all age");
             } else {
-                recommendedProduct = new Product("SomeProduct", "For males and seasonal");
+                recommendedProduct = new Product("Vinter sykkeldrakt", "For real cyclists");
             }
         } else {
             recommendedProduct = new Product("SomeProduct", "Use some default recommendation??");
         }
-
         System.out.println(recommendedProduct);
     }
 

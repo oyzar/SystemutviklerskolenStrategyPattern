@@ -1,4 +1,4 @@
-package strategyconsoleapplication.interfaces;
+package strategyconsoleapplication.product;
 
 import strategyconsoleapplication.Customer;
 import strategyconsoleapplication.Product;
