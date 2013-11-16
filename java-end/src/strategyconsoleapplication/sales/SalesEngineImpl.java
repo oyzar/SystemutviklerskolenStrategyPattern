@@ -16,6 +16,7 @@ public class SalesEngineImpl implements SalesEngine {
     private Map<SalesMode, ProductRecommender> productRecommenders;
 
     public SalesEngineImpl() {
+        // TODO saikat: Use a light weight IoC to dependency inject strategies.
         productRecommenders = new HashMap<SalesMode, ProductRecommender>() {{
             put(SalesMode.GENDER, new GenderProductRecommender());
             put(SalesMode.LOW_PRICE, new LowPriceProductRecommender());
