@@ -11,9 +11,9 @@ namespace StrategyConsoleApplication.IoC
                    .AsImplementedInterfaces()
                    .WithMetadata<ProductRecommenderMetadata>(m => m.For(x => x.SalesMode, SalesMode.Gender));
 
-            builder.RegisterType<LowPriceProductRecommender>()
+            builder.RegisterType<LowCostProductRecommender>()
                    .AsImplementedInterfaces()
-                   .WithMetadata<ProductRecommenderMetadata>(m => m.For(x => x.SalesMode, SalesMode.LowPrice));
+                   .WithMetadata<ProductRecommenderMetadata>(m => m.For(x => x.SalesMode, SalesMode.LowCost));
 
             builder.RegisterType<SeasonalProductRecommender>()
                    .AsImplementedInterfaces()

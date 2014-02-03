@@ -25,7 +25,7 @@ namespace StrategyConsoleApplication
                 else
                     recommendedProduct = new Product("SomeProduct", "For males");
             }
-            else if (salesMode == SalesMode.LowPrice)
+            else if (salesMode == SalesMode.LowCost)
             {
                 if (customer.Gender == Gender.Female)
                 {

@@ -3,7 +3,7 @@ using StrategyConsoleApplication.Interfaces;
 
 namespace StrategyConsoleApplication.Strategies
 {
-    public class LowPriceProductRecommender : IProductRecommender
+    public class LowCostProductRecommender : IProductRecommender
     {
         public Product Recommend(Customer customer)
         {

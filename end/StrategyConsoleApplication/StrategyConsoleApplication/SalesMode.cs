@@ -3,7 +3,7 @@
     public enum SalesMode
     {
         Gender = 0,
-        LowPrice = 1,
+        LowCost = 1,
         Seasonal = 2 
     }
 }

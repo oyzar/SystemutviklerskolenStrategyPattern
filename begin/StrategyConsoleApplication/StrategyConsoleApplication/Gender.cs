@@ -1,4 +1,4 @@
-﻿namespace StrategyConsoleApplication.Interfaces
+﻿namespace StrategyConsoleApplication
 {
     public enum Gender
     {
