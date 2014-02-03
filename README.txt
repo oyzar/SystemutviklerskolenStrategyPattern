@@ -1,4 +1,4 @@
-Systemutviklerskolen - Design Patterns workshopoppgaver i C#
+Systemutviklerskolen 2013 - Design Patterns 
 
 Oppsett
 	• Ha installert Visual Studio 2012
