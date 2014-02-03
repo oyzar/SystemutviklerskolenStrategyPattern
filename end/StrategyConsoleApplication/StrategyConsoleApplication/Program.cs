@@ -10,6 +10,9 @@ namespace StrategyConsoleApplication
         static void Main(string[] args)
         {
             var salesMode = (SalesMode)(int.Parse(Console.ReadLine()));
+            var gender = (Gender)(int.Parse(Console.ReadLine()));
+
+            var customer = new Customer("Henrik", gender);
 
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<AutofacBuilder>();
@@ -17,7 +20,7 @@ namespace StrategyConsoleApplication
             using (var container = containerBuilder.Build())
             {
                 var salesEngine = container.Resolve<ISalesEngine>();
-                var recommendedProduct = salesEngine.Recommend(salesMode);
+                var recommendedProduct = salesEngine.Recommend(salesMode, customer);
                 
                 Console.WriteLine(recommendedProduct);
                 Console.ReadLine();

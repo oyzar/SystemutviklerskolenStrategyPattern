@@ -2,6 +2,6 @@
 {
     public interface ISalesEngine
     {
-        Product Recommend(SalesMode salesMode);
+        Product Recommend(SalesMode salesMode, Customer customer);
     }
 }

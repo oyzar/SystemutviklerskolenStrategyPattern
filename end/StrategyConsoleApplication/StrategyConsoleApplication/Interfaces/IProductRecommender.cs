@@ -3,6 +3,6 @@ namespace StrategyConsoleApplication.Interfaces
 {
     public interface IProductRecommender
     {
-        Product Recommend();
+        Product Recommend(Customer customer);
     }
 }

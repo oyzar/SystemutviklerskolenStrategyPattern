@@ -15,9 +15,9 @@ namespace StrategyConsoleApplication
             _recommenders = recommenders;
         }
 
-        public Product Recommend(SalesMode salesMode)
+        public Product Recommend(SalesMode salesMode, Customer customer)
         {
-            return _recommenders.FirstOrDefault(e => e.Metadata.SalesMode == salesMode).Value.Recommend();
+            return _recommenders.FirstOrDefault(e => e.Metadata.SalesMode == salesMode).Value.Recommend(customer);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace StrategyConsoleApplication
             _recommenders = recommenders; 
         }
 
-        public Product Recommend(SalesMode salesMode)
+        public Product Recommend(SalesMode salesMode, Customer customer)
         {
             throw new NotImplementedException(); // TODO:
         }

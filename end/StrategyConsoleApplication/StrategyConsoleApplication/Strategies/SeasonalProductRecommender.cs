@@ -4,9 +4,12 @@ namespace StrategyConsoleApplication.Strategies
 {
     public class SeasonalProductRecommender : IProductRecommender
     {
-        public Product Recommend()
+        public Product Recommend(Customer customer)
         {
-            return new Product("Snowmower", this.GetType().ToString());
+            if (customer.Gender == Gender.Male)
+                return new Product("Snømåker", this.GetType().ToString());
+            else
+                return new Product("Vinterkjole", this.GetType().ToString());
         }
     }
 }

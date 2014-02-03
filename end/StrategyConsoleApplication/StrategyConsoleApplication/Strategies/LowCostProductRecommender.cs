@@ -2,14 +2,14 @@
 
 namespace StrategyConsoleApplication.Strategies
 {
-    public class GenderProductRecommender : IProductRecommender
+    public class LowCostProductRecommender : IProductRecommender
     {
         public Product Recommend(Customer customer)
         {
             if (customer.Gender == Gender.Male)
-                return new Product("Rollex Sea-Dweller", this.GetType().ToString());
+                return new Product("Pokal øl", this.GetType().ToString());
             else
-                return new Product("Prada purse", this.GetType().ToString());
+                return new Product("Økonomi sko", this.GetType().ToString());
         }
     }
 }

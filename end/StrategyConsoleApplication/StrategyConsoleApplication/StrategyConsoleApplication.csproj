@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs" />
+    <Compile Include="Gender.cs" />
     <Compile Include="Interfaces\IProductRecommender.cs" />
     <Compile Include="Interfaces\ISalesEngine.cs" />
     <Compile Include="IoC\AutofacBuilder.cs" />
@@ -57,7 +59,7 @@
     <Compile Include="SalesEngine.cs" />
     <Compile Include="SalesMode.cs" />
     <Compile Include="Strategies\GenderProductRecommender.cs" />
-    <Compile Include="Strategies\LowPriceProductRecommender.cs" />
+    <Compile Include="Strategies\LowCostProductRecommender.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\SeasonalProductRecommender.cs" />
