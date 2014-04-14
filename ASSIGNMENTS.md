@@ -32,7 +32,7 @@ The customer wants you to build the system as a proof-of-concept console applica
 
 ### Patterns & Anti-patterns
 
-Refactor in: *Strategy, IoC*
+Refactor in: *Strategy, Inversion of Control*
 
 Refactor out anti-patterns: *Arrow, Blob*
 
@@ -44,82 +44,89 @@ Java version av oppgaver er beskrivet på Design Patterns workshopoppgaver i Jav
 
 ### Assignment task #1
 
-In the method static void Main(string[] args) in Program.cs you see there's instaces of hardcoded SalesModes being used in a nested if-block (Arrow Anti-pattern) that selects recommondation classes. Replace this with an implementation of the Strategy-pattern for selecting the appropriate product recommender in runtime, based on a SalesMode as input value from the console. As an additional option, read customer's gender from the console also and use this value to get even more precise product recommendations.
+In the method `static void Main(string[] args)` in `Program.cs` you see there are instances of hard-coded `SalesMode` being used in a nested if-block (Arrow Anti-pattern) that selects recommender classes. Replace this with an implementation of the **Strategy pattern** for selecting the appropriate product recommender in runtime, based on a `SalesMode` as input value from the console. As an additional option, read customer's gender from the console also and use this value to get even more precise product recommendations.
 
-Input:
+Input parameters:
 
-    Read SalesMode as a number from the console (0=Gender, 1=Low-cost, 2=Season)
-    Read Gender as a number from the console (0=Male, 1=Female)
+* **SalesMode** as a number from the console (0=Gender, 1=Low-cost, 2=Season)
+* **Gender** as a number from the console (0=Male, 1=Female)
 
-Output
+Output to console:
 
-    Product name and the type of the IProductRecommender to console.
-        Example: "<product name>, Recommender: <recommender's class name>"
-
+	Format: [Product name] - Recommender: [the type of the IProductRecommender]
+	Example: Niva hand cream, Recommender: GenderProductRecommender
  
 
-a) Read SalesMode as input from console into a local variable called "salesMode"
+a) Read `SalesMode` as input from console into a local variable called `salesMode`
 
-b) Read Gender as input from console into a local variable called "gender"
+b) Read `Gender` as input from console into a property called `Gender` on a `Customer`-class.
 
-c) Implement the Strategy-classes GenderProductRecommender, LowCostProductRecommender og SeasonProductRecommender.
+c) Implement the Strategy-classes `GenderProductRecommender`, `LowCostProductRecommender` and `SeasonProductRecommender`.
 
-    Hint: use an arbitrary product name. Implementing or connecting to a product database is outside the scope of these assignments.
 
-d) Implement the method public Product Recommend(SalesMode salesMode, Customer customer) in the SalesEngine-class
+> Hint: Use an arbitrary product name. Implementing or connecting to a product database is outside the scope of these assignments.
 
-e) Create a new local variable called "salesEngine" and instansiate an object of type SalesEngine. Provide it with instantiated product recommenders in its constructor.
+d) Implement the method `public Product Recommend(SalesMode salesMode, Customer customer)` in the `SalesEngine`-class
 
-f) Input "salesMode" and "customer" to salesEngine's "Recommend"-method and retrieve a product.
+e) Create a new local variable called `salesEngine` and instantiate an object of type `SalesEngine`. Provide it with instantiated recommender-instances in its constructor.
 
+f) Supply `salesMode` and `customer` to the `Recommend`-method of `salesEngine` and retrieve a product.
  
 
-You have now a working product recommender that selects an IProductRecommender-implementation at runtime!
+You have now a working product-recommender that selects an `IProductRecommender`-implementation at runtime! It selects a recommender based on a `SalesMode` and a customer with a `Gender`-property.
 
-It can be improved apon further by using IoC and DI to retrieve SalesEngine and provide it with the product recommenders rather than instantiating them directly. See the next assignment
+This can be improved upon further by using *IoC* and *Dependency Injection* to retrieve `SalesEngine` and provide it with the product-recommenders rather than instantiating them directly. See assignment task #2.
 
 ### Assignment task #2
 
-You have now implemented the different classes needed, so now you can bind it all together with IoC (Autofac) to retrieve SalesEngine and find a recommended product based on given SalesMode in runtime with the use of IProductRecommender-implementations.
-
+You have now implemented all of the classes needed to meet the requirements, so now you can bind it all together with *IoC* ([Autofac](http://autofac.org/)) to retrieve an instantiated `SalesEngine`-object and find a recommended product based on given `SalesMode` at runtime.
  
 
-a) Install NuGet-package "Autofac".
+a) Install the NuGet-package "Autofac".
 
-b) Initialize Autofac after you have read the SalesMode into "salesMode" from the console in static void Main(string[] args) in Program.cs
+b) Initialize Autofac after you have read the `SalesMode` into `salesMode` from the console in `static void Main(string[] args)` in `Program.cs` by adding the following code:
 
-var containerBuilder = new ContainerBuilder();
+	var containerBuilder = new ContainerBuilder();
+	
+	containerBuilder.RegisterModule<AutofacBuilder>();
+	
+	using (var container = containerBuilder.Build())	
+	{	
+		// TODO: Assigment 2 c) & d)	
+	}
 
-containerBuilder.RegisterModule<AutofacBuilder>();
+Create a new class called `AutofacBuilder`: `internal class AutofacBuilder : Autofac.Module`.
 
-using (var container = containerBuilder.Build())
+c) Change the method `public Product Recommend(SalesMode salesMode, Customer customer)` in the `SalesEngine`-class to match on `Metadata`
 
-{
+> Hint: Create a new constructor for `SalesEngine` that takes in a list of all the recommenders:
+> 
+	public SalesEngine(IEnumerable<Lazy<IProductRecommender, ProductRecommenderMetadata>> recommenders)
+    {
+        _recommenders = recommenders;
+    } 
+> 
+> In the list `_recommenders` you will find a match on a recommender that has the property `Metadata` equaling the method parameter `salesMode`. Run its `Recommend()`-method to find a product:
 
-// TODO: Assigment 2 c) & d)
+> _recommenders.FirstOrDefault(e => e.Metadata.SalesMode == salesMode).Value.Recommend(customer);
 
-}
+d) Implement the method `protected override void Load(ContainerBuilder builder)` in the `AutofacBuilder`-class
 
-c) Change the method public Product Recommend(SalesMode salesMode, Customer customer) in the SalesEngine-class to match on Metadata
+* Register the type `SalesEngine` with `AsImplementedInterfaces`
+* Register the type `GenderProductRecommender` with `AsImplementedInterfaces` and with metadata class `ProductRecommenderMetadata` for property `SalesMode` which should be set to `SalesMode.Gender`.
+* Do the equivalent to `LowPriceProductRecommender` and `SeasonalProductRecommender` with `SalesMode.LowCost` and `SalesMode.Seasonal`
 
-    Hint: In the list _recommenders you will find a match on a recommender that has the property Metadata equalling the method parameter salesMode. Run its Recommend()-method to find a product
+e) Modify your local variable `salesEngine` to use Autofac to resolve `ISalesEngine` to the type `SalesEngine`.
 
-d) Implement the method protected override void Load(ContainerBuilder builder) in the AutofacBuilder-class
-
-    Register the type SalesEngine with AsImplementedInterfaces
-    Register the type GenderProductRecommender with AsImplementedInterfaces and with metadata class ProductRecommenderMetadata for property SalesMode which should be set to SalesMode.Gender.
-        Do the equivalent to LowPriceProductRecommender and SeasonalProductRecommender with SalesMode.LowCost and SalesMode.Seasonal
-
-e) Modify your local variable "salesEngine" to use Autofac to resolve ISalesEngine to the type SalesEngine.
 
 ## Summary
 
-After you have completed all of the assignments you should be able to get a recommended product returned the system based on a given SalesMode.
+After you have completed all of the assignment tasks you should be able to get a recommended product returned the system based on a given `SalesMode`.
 
-You have now created a reusable and isolated product recommendation component that can be imported into and used in the e-commerce system by inputing a SalesMode and getting products back via a IProductRecommender in runtime.
+You have now created a reusable and isolated product recommendation component that can be imported into and used in the e-commerce system by providing a `SalesMode` and a `Customer`-object, and getting products back via a `IProductRecommender` at runtime.
 
-You have implemented the Strategy-pattern by using the SalesEngine as the Context and different implementations of IProductRecommender as concrete Strategies. IProductRecommender is adhering to the Open/Closed-principle by being open for extension but closed for modification. The team can therefore now consentrate on creating Strategy-implementations and testing these without touching the IProductRecommender-interface or the SalesEngine.
+You have implemented the Strategy-pattern by using the `SalesEngine` as the Context and different implementations of `IProductRecommender` as concrete Strategies. `IProductRecommender` is adhering to the Open/Closed-principle by being open for extensions (more recommenders, more customer-properties) but closed for modification. The team can therefore now concentrate on creating Strategy-implementations and testing these without touching the `IProductRecommender`-interface or the `SalesEngine`.
 
 You have also seen that IoC and Dependency Inversion lets you code against interfaces/abstractions and not concrete implementations, allowing a better abstraction level in the code, higher testability and reduces coupling between classes (low coupling / high cohesion)
 
-If you have achieved all of this then one can say that you have done a SOLID piece of work (smile)
+If you have achieved all of this then one can say that you have done a SOLID piece of work :)
