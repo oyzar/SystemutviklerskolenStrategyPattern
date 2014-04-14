@@ -116,6 +116,20 @@ d) Implement the method `protected override void Load(ContainerBuilder builder)`
 * Register the type `GenderProductRecommender` with `AsImplementedInterfaces` and with metadata class `ProductRecommenderMetadata` for property `SalesMode` which should be set to `SalesMode.Gender`.
 * Do the equivalent to `LowPriceProductRecommender` and `SeasonalProductRecommender` with `SalesMode.LowCost` and `SalesMode.Seasonal`
 
+    
+> Hint: You will need a class `ProductRecommenderMetadata` to hold metadata in order to match a recommender with a `SalesMode`:
+>   
+	public class ProductRecommenderMetadata
+	{
+		public SalesMode SalesMode { get; set; }
+	}
+> Example of registering a type with metadata:
+> 
+	builder.RegisterType<GenderProductRecommender>()
+	   .AsImplementedInterfaces()
+	   .WithMetadata<ProductRecommenderMetadata>(m => m.For(x => x.SalesMode, SalesMode.Gender));
+>	
+
 e) Modify your local variable `salesEngine` to use Autofac to resolve `ISalesEngine` to the type `SalesEngine`.
 
 
