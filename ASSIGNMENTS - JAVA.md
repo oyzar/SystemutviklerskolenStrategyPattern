@@ -1,38 +1,39 @@
-Oppgave 1
+Assignment 1
 
-Main klass for Java program er Program.java. Metoden public static void main(String [] args) i Program.java leser inn to parameter fra kommando-linje og parser dette til en Gender og SalesMode objekt og bruker disse med en svær nested if blokk (Arrow Anti-Pattern) som velger anbefalt produkt. Første del av oppgaven er å fjerne den svær nested 'if' blokk og velg riktig anbefalingsstrategi i runtime .
+The Main class for the Java program is Program.java. The method public static void main(String [] args) in Program.java reads in two parameters from the command line and parses this to a Gender and a SalesMode object. These objects are then used in a huge nested if bloc (Arrow Anti-Pattern) which selects the recommanded product. First part of the assignment consists of removing the huge nested 'if' bloc and selecting the right recommanded strategy in runtime.
 
 Input:
 
-    Les inn Gender som et tekst og resolver til et enum
-    Les inn SalesMode som et tekst og resolver til et enum
+    Read in Gender as text and resolve to an enum
+    Read in SalesMode as text and resolve to an enum
 
 Output
 
-    Navn på vare og valgt type som implementerer ProductRecommender ut til Console
-        Eksempel: "<produktnavn>, Recommender: <recommenders klassenavn>"
+    Name of the product and selected type which implements the ProductRecommender out to the Console
+        Example: "<product>, Recommender: <recommenders class name>"
 
-a) Implementer innlesing av input fra konsoll til to lokal variabeler "gender" (Gender) og "salesMode" (SalesMode)
+a) Implement parsing av input text from konsoll to local variables "gender" (Gender) and "salesMode" (SalesMode)
 
-b) Opprett en ny interface interface ProductRecommender som har to metoder: "Product recommend(Customer customer)" og "boolean supports(SalesMode salesMode)"
+b) Create a new interface interface ProductRecommender that has two methods: "Product recommend(Customer customer)" and "boolean supports(SalesMode salesMode)"
 
-c) Implementer Strategy-klassene GenderProductRecommender, LowPriceProductRecommender og SeasonalProductRecommender.
+c) Implement Strategy-classes GenderProductRecommender, LowPriceProductRecommender and SeasonalProductRecommender.
 
-    Bruk et virkårlig produktnavn. Implementering av produktdatabase er utenfor scopet.
+    Use example product names as implementing the product database is outside of this assigments scope.
 
-d) Instansier SalesEngine implementasjon med tilgjengelig ProductRecommender klasser
+d) Instantiate SalesEngine implementation with available ProductRecommender class
 
-e) Implementer SalesEngine sin metod Product recommend(SalesMode salesMode, Customer customer) som bruker riktig ProductRecommender å anbefale produkt
-Oppgave 2
+e) Implement SalesEngine method Product recommend(SalesMode salesMode, Customer customer) so as to use the right  ProductRecommender to recommend a product
 
-Java utviklerne kan bruke PicoContainer som er en del av kodebase mapper dere får. Hele PicoContainer rammeverk er under 324 KB og ligger under ${project.home}/java-lib/ mappe.
+Assignment 2
 
-a) Inkluder ${project.home}/java-lib/ mappe i kompilering og run-time library path på din IDE
+Java developers may use PicoContainer as provided under the codebase directory. The PicoContainer framework is under 324 KB and lies under ${project.home}/java-lib/ directory.
 
-b) Legge til kontainer oppstart kode i Program.java (eller hvor du synes er fornuftig):
+a) Include ${project.home}/java-lib/ directory under the compile and run-time library path for your IDE
+
+b) Add container startup code in Program.java (or any place you may find suitable):
 
 MutablePicoContainer picoContainer = new PicoBuilder().build();
 
-c) Opprett en ny lokal variabel "salesEngine" og bruk MutablePicoContainer til å resolve SalesEngine til typen SalesEngineImpl.
+c) Create a new local variable "salesEngine" and use MutablePicoContainer to resolve SalesEngine to the type SalesEngineImpl.
 
-d) Bruk SalesEngine sin recommend() med SalesMode og Customer parameterne
+d) Use SalesEngine's recommend() with SalesMode and Customer parameters
