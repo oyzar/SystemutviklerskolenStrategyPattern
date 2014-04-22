@@ -20,7 +20,7 @@ This workshop, along with its assignments, focuses on practical and hands-on use
 
 [The assignments](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp) use the same business case for both .Net and Java, with separate programming tasks for each.
 
-To start the assignments, go to the folders [**/begin**](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp/tree/master/begin) ([**/java-begin**](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp/tree/master/java-begin)). Copy the files to your local computer and then start with the tasks in the assignment.
+To start the assignments, go to the folder [**/begin**](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp/tree/master/begin) ([**/java-begin**](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp/tree/master/java-begin)). Copy the files to your local computer and then start with the tasks in the assignment.
 
 If for some reason you get stuck or need clarification on a specific task, then look at the files in [**/end**](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp/tree/master/end) ([**/java-end**](https://github.com/HenrikWM/Systemutviklerskolen2013DesignPatternsWorkshopCSharp/tree/master/java-end)) to have a look at the suggested solution.
 

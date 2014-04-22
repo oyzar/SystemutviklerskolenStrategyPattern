@@ -9,7 +9,10 @@ namespace StrategyConsoleApplication
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Salesmode (0=Gender, 1=LowCost, 2=Seasonal):");
             var salesMode = (SalesMode)(int.Parse(Console.ReadLine()));
+
+            Console.WriteLine("Gender (0=Male, 1=Female):");
             var gender = (Gender)(int.Parse(Console.ReadLine()));
 
             var customer = new Customer("Henrik", gender);

@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return Name + ", " + RecommendedBy; // TODO: 
+            return string.Format("{0}", Name);
         }
     }
 }

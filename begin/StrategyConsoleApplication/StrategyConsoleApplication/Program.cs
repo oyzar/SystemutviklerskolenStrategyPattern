@@ -1,5 +1,4 @@
 ﻿using System;
-using StrategyConsoleApplication.Interfaces;
 
 namespace StrategyConsoleApplication
 {

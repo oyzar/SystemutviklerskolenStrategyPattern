@@ -58,7 +58,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategies\GenderProductRecommender.cs" />
-    <Compile Include="Strategies\LowPriceProductRecommender.cs" />
+    <Compile Include="Strategies\LowCostProductRecommender.cs" />
     <Compile Include="Strategies\SeasonalProductRecommender.cs" />
   </ItemGroup>
   <ItemGroup>

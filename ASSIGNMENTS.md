@@ -53,7 +53,7 @@ Input parameters:
 
 Output to console:
 
-	Format: [Product name] - Recommender: [the type of the IProductRecommender]
+	Format: [Product name], Recommender: [the type of the IProductRecommender]
 	Example: Niva hand cream, Recommender: GenderProductRecommender
  
 
@@ -95,7 +95,7 @@ b) Initialize Autofac after you have read the `SalesMode` into `salesMode` from 
 		// TODO: Assigment 2 c) & d)	
 	}
 
-Create a new class called `AutofacBuilder`: `internal class AutofacBuilder : Autofac.Module`.
+Uncomment the class `AutofacBuilder` in the folder `IoC`. You will implement the Load-method in step d).
 
 c) Change the method `public Product Recommend(SalesMode salesMode, Customer customer)` in the `SalesEngine`-class to match on `Metadata`
 
@@ -132,10 +132,10 @@ d) Implement the method `protected override void Load(ContainerBuilder builder)`
 
 e) Modify your local variable `salesEngine` to use Autofac to resolve `ISalesEngine` to the type `SalesEngine`.
 
+Now run your program. After you have completed all of the assignment tasks you should be able to get a recommended product returned the system based on a given `SalesMode` and `Gender`.
+
 
 ## Summary
-
-After you have completed all of the assignment tasks you should be able to get a recommended product returned the system based on a given `SalesMode`.
 
 You have now created a **reusable** and **isolated** product recommendation component that can be imported into and used in the e-commerce system by providing a `SalesMode` and a `Customer`-object, and getting products back via a `IProductRecommender` at runtime.
 
