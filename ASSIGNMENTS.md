@@ -141,6 +141,6 @@ You have now created a **reusable** and **isolated** product recommendation comp
 
 You have implemented the **Strategy**-pattern by using the `SalesEngine` as the **Context** and different implementations of `IProductRecommender` as concrete **Strategies**. `IProductRecommender` is adhering to the **Open/Closed-principle** by being open for extensions (more recommenders, more customer-properties) but closed for modification. The team can therefore now concentrate on creating **Strategy**-implementations and testing these without touching the `IProductRecommender`-interface or the `SalesEngine`.
 
-You have also seen that **IoC** and **Dependency Inversion** lets you code against interfaces/abstractions and not concrete implementations, allowing a better abstraction level in the code, higher testability and reduces coupling between classes (low coupling / high cohesion)
+You have also seen that **IoC** and **Dependency Inversion** lets you code against interfaces/abstractions and not concrete implementations, allowing a better abstraction level in the code, higher testability and reduces coupling between classes (**low coupling/high cohesion**)
 
 If you have achieved all of this then one can say that you have done a **SOLID** piece of work :)
