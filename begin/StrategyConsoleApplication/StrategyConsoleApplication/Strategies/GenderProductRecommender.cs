@@ -1,5 +1,4 @@
-﻿using System;
-using StrategyConsoleApplication.Interfaces;
+﻿using StrategyConsoleApplication.Interfaces;
 
 namespace StrategyConsoleApplication.Strategies
 {
@@ -7,7 +6,13 @@ namespace StrategyConsoleApplication.Strategies
     {
         public Product Recommend(Customer customer)
         {
-            throw new NotImplementedException(); // TODO: 
+
+            if (customer.Gender == Gender.Female)
+            {
+                return new Product("SomeProduct", "For females");
+            }
+            else
+                return new Product("SomeProduct", "For males");
         }
     }
 }

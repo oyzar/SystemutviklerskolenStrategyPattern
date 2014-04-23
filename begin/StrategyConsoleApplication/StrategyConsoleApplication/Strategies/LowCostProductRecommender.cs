@@ -7,7 +7,8 @@ namespace StrategyConsoleApplication.Strategies
     {
         public Product Recommend(Customer customer)
         {
-            throw new NotImplementedException(); // TODO:
+            return customer.Gender == Gender.Female ? new Product("SomeProduct", "For females and low-cost") 
+                : new Product("SomeProduct", "For males and low-cost");
         }
     }
 }

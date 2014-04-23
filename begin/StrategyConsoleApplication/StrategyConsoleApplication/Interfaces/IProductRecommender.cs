@@ -5,4 +5,7 @@ namespace StrategyConsoleApplication.Interfaces
     {
         Product Recommend(Customer customer);
     }
+
+
+    
 }

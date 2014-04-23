@@ -16,7 +16,8 @@ namespace StrategyConsoleApplication
 
         public Product Recommend(SalesMode salesMode, Customer customer)
         {
-            throw new NotImplementedException(); // TODO:
+            var recomender= _recommenders.First();
+            return recomender.Value.Recommend(customer);
         }
     }
 }

@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -52,17 +55,20 @@
     <Compile Include="Customer.cs" />
     <Compile Include="IoC\AutofacBuilder.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductRecomenderFactory.cs" />
     <Compile Include="ProductRecommenderMetadata.cs" />
     <Compile Include="SalesEngine.cs" />
     <Compile Include="SalesMode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategies\DefaultProductRecomender.cs" />
     <Compile Include="Strategies\GenderProductRecommender.cs" />
     <Compile Include="Strategies\LowCostProductRecommender.cs" />
     <Compile Include="Strategies\SeasonalProductRecommender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
